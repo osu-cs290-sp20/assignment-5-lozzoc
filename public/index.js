@@ -32,57 +32,21 @@
  * </article>
  */
 function insertNewTwit(twitText, twitAuthor) {
+  var newtwit = `<article class="twit">
+   <div class="twit-icon">
+     <i class="fa fa-bullhorn"></i>
+   </div>
+   <div class="twit-content">
+     <p class="twit-text">${twitText}</p>
+     <p class="twit-author">
+       <a href="#">${twitAuthor}</a>
+     </p>
+   </div>
+ </article>`;
 
-  // Create a new twit <article> element.
-  var twitElem = document.createElement('article');
-  twitElem.classList.add('twit');
 
-  /*
-   * Create a new twit-icon <div> element, insert bullborn with innerHTML
-   * (which is safe in this case because we're not dealing with user input),
-   * and add the div into the new twit element.
-   */
-  var twitIconElem = document.createElement('div');
-  twitIconElem.classList.add('twit-icon');
-  twitIconElem.innerHTML = '<i class="fa fa-bullhorn"></i>';
-  twitElem.appendChild(twitIconElem);
-
-  /*
-   * Create a new twit-content <div> element, and insert it into the new twit
-   * element.
-   */
-  var twitContentElem = document.createElement('div');
-  twitContentElem.classList.add('twit-content');
-  twitElem.appendChild(twitContentElem);
-
-  /*
-   * Create a new twit-text <p> element and add to it a text node containing
-   * the twit text value specified by the user.  Add the twit-text <p> element
-   * into the twit-content element.
-   */
-  var twitTextNode = document.createTextNode(twitText);
-  var twitTextElem = document.createElement('p');
-  twitTextElem.classList.add('twit-text');
-  twitTextElem.appendChild(twitTextNode);
-  twitContentElem.appendChild(twitTextElem);
-
-  /*
-   * Create a new twit-author <p> element and add to it an <a> element
-   * that itself contains a text node with the twit author value
-   * specified by the user.  Add the twit-author <p> element into the
-   * twit-content element.
-   */
-  var twitAuthorTextNode = document.createTextNode(twitAuthor);
-  var twitAuthorLinkElem = document.createElement('a');
-  twitAuthorLinkElem.href = '#';
-  twitAuthorLinkElem.appendChild(twitAuthorTextNode);
-  var twitAuthorElem = document.createElement('p');
-  twitAuthorElem.classList.add('twit-author');
-  twitAuthorElem.appendChild(twitAuthorLinkElem);
-  twitContentElem.appendChild(twitAuthorElem);
-
-  var twitContainer = document.querySelector('main.twit-container');
-  twitContainer.appendChild(twitElem);
+ var twitContainer = document.querySelector('main.twit-container');
+ twitContainer.insertAdjacentHTML("beforeend",newtwit)
 
 }
 
