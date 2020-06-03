@@ -32,17 +32,7 @@
  * </article>
  */
 function insertNewTwit(twitText, twitAuthor) {
-  var newtwit = `<article class="twit">
-   <div class="twit-icon">
-     <i class="fa fa-bullhorn"></i>
-   </div>
-   <div class="twit-content">
-     <p class="twit-text">${twitText}</p>
-     <p class="twit-author">
-       <a href="#">${twitAuthor}</a>
-     </p>
-   </div>
- </article>`;
+  var newtwit = Handlebars.templates.Twit({ text: twitText,author: twitAuthor})
 
 
  var twitContainer = document.querySelector('main.twit-container');
