@@ -74,7 +74,23 @@ app.get('/:nav',basicPages, function(req,res,next){
 		})
 		return;
 })
-
+app.get('/twits/:index',(req,res,next)=>{
+	const ind = parseInt(req.params.index);
+	if(!ind){
+		next();
+	}
+	else if(ind > -1 && ind < data.length){
+		const navs =  [{str: "Home"} , {str: "Trending"}, {str:"People"}, {str: "Mystery",active: true}];
+		res.status(200).render("TwitDetail",{
+			twit: data[ind],
+			navlinks: navs,
+			layout:false
+		})
+	}
+	else{
+		next();
+	}
+})
 app.use(express.static('public'));
 
 app.get('*', basicPages, function (req, res) {
