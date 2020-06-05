@@ -19,7 +19,7 @@ function basicPages(req,res,next){
 	if(req.url === "/"){
 		pagenum = 0;
 	}
-	else if(req.params.nav)
+	else if(req.params.nav){
 		switch(req.params.nav.toLowerCase()){
 			case "home":
 				pagenum = 0;
@@ -38,6 +38,10 @@ function basicPages(req,res,next){
 				req["404"] = -1;
 				break;
 		}
+	}
+	else{
+		pagenum = -5;
+	}
 
  	const navs =  [{str: "Home"} , {str: "Trending"}, {str:"People"}, {str: "Mystery"}];
 	if(pagenum > -1){
